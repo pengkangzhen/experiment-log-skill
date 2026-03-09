@@ -1,0 +1,38 @@
+name: example-skill
+description: "示例技能模板"
+version: "0.1.0"
+author: "Your Name"
+
+entry_point: example_skill:ExampleSkill
+
+triggers:
+  - pattern: "/example"
+    description: "触发示例技能"
+
+args:
+  - name: param1
+    type: string
+    required: false
+    default: "default_value"
+    description: "第一个参数"
+  - name: param2
+    type: integer
+    required: false
+    default: 0
+    description: "第二个参数"
+
+help_text: |
+  ## Example Skill
+
+  这是一个示例技能模板。
+
+  ### 用法
+
+  ```
+  /example [param1] [param2]
+  ```
+
+  ### 参数
+
+  - `param1` (string, optional): 第一个参数，默认为 "default_value"
+  - `param2` (integer, optional): 第二个参数，默认为 0

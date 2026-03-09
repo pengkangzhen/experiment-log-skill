@@ -1,0 +1,44 @@
+name: skill-dev
+description: "Claude Code 技能开发框架 - 用于创建、管理和测试自定义技能"
+version: "0.1.0"
+author: "Your Name"
+
+entry_point: claude_code_skill_dev.skill:SkillDevSkill
+
+triggers:
+  - pattern: "/skill-create"
+    description: "创建一个新的技能模板"
+  - pattern: "/skill-test"
+    description: "测试当前技能"
+  - pattern: "/skill-validate"
+    description: "验证技能配置"
+
+args:
+  - name: name
+    type: string
+    required: false
+    description: "技能名称"
+  - name: template
+    type: string
+    required: false
+    default: "basic"
+    description: "使用的模板类型 (basic, api, file)"
+
+help_text: |
+  ## Skill Dev 技能
+
+  用于开发 Claude Code 技能的通用框架。
+
+  ### 命令
+
+  - `/skill-create [name] [--template basic|api|file]` - 创建新技能模板
+  - `/skill-test` - 运行技能测试
+  - `/skill-validate` - 验证技能配置
+
+  ### 示例
+
+  ```
+  /skill-create my-awesome-skill --template api
+  /skill-test
+  /skill-validate
+  ```

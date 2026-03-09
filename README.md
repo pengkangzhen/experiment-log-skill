@@ -8,6 +8,7 @@
 
 - **自动捕获**：后台守护进程监控对话历史，无需手动触发
 - **意图识别**：自动识别新问题、尝试、成功、失败等意图
+- **结构化记录**：自动提取问题上下文、当前操作、错误信息等
 - **树状记录**：自动构建实验探索的树状结构
 - **双模式**：支持自动模式和手动模式
 
@@ -84,6 +85,21 @@ exp-log daemon status
 
 ---
 
+## 记录的结构化信息
+
+每个实验节点自动记录以下详细信息：
+
+| 字段 | 说明 | 提取方式 |
+|------|------|---------|
+| `problem_context` | 当前问题上下文 | 从消息中智能提取 |
+| `possible_actions` | 可能的操作列表 | 识别列表、枚举词 |
+| `current_action` | 当前执行的操作 | 识别"试试"、"用"等动词后的内容 |
+| `error_info` | 错误信息 | 识别"报错"、"Error:"等 |
+| `code_snippets` | 代码片段 | 提取 ``` 代码块 |
+| `files_involved` | 涉及的文件 | 识别文件路径模式 |
+
+---
+
 ## 命令参考
 
 ### CLI 命令
@@ -133,7 +149,23 @@ exp-log daemon start --interval 2.0 --confidence 0.6
 
 ---
 
+## 开发
+
+### 安装依赖
+
+```bash
+poetry install
+```
+
+### 运行测试
+
+```bash
+poetry run pytest
+```
+
+---
+
 ## 下一步
 
-- 查看 [USAGE.md](./USAGE.md) 了解完整使用指南
-- 查看 [INSTALL.md](./INSTALL.md) 了解详细安装步骤
+- 查看 [USAGE.md](./skills/experiment-log/USAGE.md) 了解完整使用指南
+- 查看 [INSTALL.md](./skills/experiment-log/INSTALL.md) 了解详细安装步骤
